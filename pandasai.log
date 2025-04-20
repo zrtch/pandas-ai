@@ -338,3 +338,90 @@ df = execute_sql_query(sql_query)
 city_with_max_population = df.at[0, 'city']
 result = {'type': 'string', 'value': f'The city with the highest population is {city_with_max_population}.'}
 2025-04-20 23:14:59 [INFO] Response generated successfully.
+2025-04-20 23:17:46 [INFO] Question: Plot the histogram of countries showing for each one the gd. Use different colors for each bar
+2025-04-20 23:17:47 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-04-20 23:17:47 [INFO] Prompt ID: 00e57f69-6b5f-40b4-8a3b-d924757f6403
+2025-04-20 23:17:47 [INFO] Generating new code...
+2025-04-20 23:17:47 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_3196ce98cf3ce3223735e1d61022e9d2" dimensions="10x2">
+country,revenue
+United States,5000
+United Kingdom,3200
+France,2900
+Germany,4100
+Italy,2300
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot the histogram of countries showing for each one the gd. Use different colors for each bar
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-04-20 23:17:57 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def execute_sql_query(sql_query: str) -> pd.Dataframe:
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+    # Connect to the database and execute query
+    # This is just a placeholder function
+
+# Write code here
+sql_query = "SELECT * FROM table_3196ce98cf3ce3223735e1d61022e9d2"
+df = execute_sql_query(sql_query)
+
+# Create a bar plot
+plt.figure(figsize=(10,6))
+plt.bar(df['country'], df['revenue'], color=['blue', 'green', 'red', 'cyan', 'magenta'])
+plt.xlabel('Country')
+plt.ylabel('Revenue')
+plt.title('Revenue by Country')
+plt.savefig('revenue_chart.png')
+
+# Declare result var: 
+result = { "type": "plot", "value": "revenue_chart.png" }
+2025-04-20 23:17:57 [INFO] Validating code requirements...
+2025-04-20 23:17:57 [INFO] Code validation successful.
+2025-04-20 23:17:57 [INFO] Cleaning the generated code...
+2025-04-20 23:17:57 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_3196ce98cf3ce3223735e1d61022e9d2'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['country'], df['revenue'], color=['blue', 'green', 'red', 'cyan', 'magenta'])
+plt.xlabel('Country')
+plt.ylabel('Revenue')
+plt.title('Revenue by Country')
+plt.savefig('exports/charts/temp_chart_ede99815-ae2b-4341-84b5-6a60e19469bc.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_ede99815-ae2b-4341-84b5-6a60e19469bc.png'}
+2025-04-20 23:17:59 [INFO] Response generated successfully.
