@@ -425,3 +425,85 @@ plt.title('Revenue by Country')
 plt.savefig('exports/charts/temp_chart_ede99815-ae2b-4341-84b5-6a60e19469bc.png')
 result = {'type': 'plot', 'value': 'exports/charts/temp_chart_ede99815-ae2b-4341-84b5-6a60e19469bc.png'}
 2025-04-20 23:17:59 [INFO] Response generated successfully.
+2025-04-20 23:25:14 [INFO] Question: Plot the histogram of countries showing for each one the gd. Use different colors for each bar
+2025-04-20 23:25:14 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-04-20 23:25:14 [INFO] Prompt ID: b0963d85-d73b-4552-9e65-3dbb9c0e68b1
+2025-04-20 23:25:14 [INFO] Generating new code...
+2025-04-20 23:25:14 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_3196ce98cf3ce3223735e1d61022e9d2" dimensions="10x2">
+country,revenue
+United States,5000
+United Kingdom,3200
+France,2900
+Germany,4100
+Italy,2300
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot the histogram of countries showing for each one the gd. Use different colors for each bar
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-04-20 23:25:21 [INFO] Code Generated:
+# Import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Define the SQL query
+sql_query = "SELECT * FROM table_3196ce98cf3ce3223735e1d61022e9d2"
+
+# Execute the query
+df = execute_sql_query(sql_query)
+
+# Plot the histogram
+plt.bar(df['country'], df['revenue'], color = ['blue', 'green', 'red', 'purple', 'orange'])
+plt.xlabel('Country')
+plt.ylabel('Revenue')
+plt.title('Revenue by Country')
+plt.savefig("revenue_histogram.png")
+
+# Declare result var
+result = { "type": "plot", "value": "revenue_histogram.png" }
+2025-04-20 23:25:22 [INFO] Validating code requirements...
+2025-04-20 23:25:22 [INFO] Code validation successful.
+2025-04-20 23:25:22 [INFO] Cleaning the generated code...
+2025-04-20 23:25:22 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_3196ce98cf3ce3223735e1d61022e9d2'
+df = execute_sql_query(sql_query)
+plt.bar(df['country'], df['revenue'], color=['blue', 'green', 'red', 'purple', 'orange'])
+plt.xlabel('Country')
+plt.ylabel('Revenue')
+plt.title('Revenue by Country')
+plt.savefig('exports/charts/temp_chart_417aac70-163a-4c49-89f3-4358f887a863.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_417aac70-163a-4c49-89f3-4358f887a863.png'}
+2025-04-20 23:25:22 [INFO] Response generated successfully.
